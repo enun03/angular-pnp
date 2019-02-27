@@ -1,0 +1,16 @@
+<table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Task</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let li of ListItems">
+      <td scope="row"><a href="/sites/sharestack/EM-site/Lists/ToDo/EditForm.aspx?ID={{li.ID}}">{{li.ID}}</a></td>
+      <td>{{li.Title}}</td>
+      <td>{{li.Status}}</td>
+    </tr>
+  </tbody>
+</table>
