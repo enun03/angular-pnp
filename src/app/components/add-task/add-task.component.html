@@ -19,9 +19,7 @@
         <label for="taskStatus">Status</label>
         <select id="status" name="status" class="form-control" 
                 [(ngModel)]="task.Status" #status="ngModel" required>
-          <option selected>Pending</option>
-          <option>In Progress</option>
-          <option>Completed</option>
+          <option *ngFor="let option of taskStatusSelectOptions" value="{{option.Option}}">{{option.Option}}</option>
         </select>
         <!-- Status Validation Alert -->
         <div [hidden]="status.valid || status.pristine"

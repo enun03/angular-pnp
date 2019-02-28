@@ -13,13 +13,15 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AddTaskComponent } from './components/add-task/add-task.component';
 import { UpdateTaskModalComponent } from './components/dashboard/update-task-modal/update-task-modal.component';
+import { StatusChartComponent } from './components/dashboard/status-chart/status-chart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     AddTaskComponent,
-    UpdateTaskModalComponent
+    UpdateTaskModalComponent,
+    StatusChartComponent
   ],
   entryComponents: [
     UpdateTaskModalComponent
