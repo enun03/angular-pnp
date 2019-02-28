@@ -18,9 +18,9 @@
         </td>
         <td>{{task.Title}}</td>
         <td>{{task.Status}}</td>
-        <td>
+        <td ng-if="!task.deleted">
           <div style="text-align:center">
-            <fa-icon id="trashIcon" [icon]="faTrashAlt" (click)="deleteTask(task, i, $event)"></fa-icon>
+            <fa-icon id="trashIcon" [icon]="faTrashAlt" [swal]="deleteSwal" (confirm)="deleteTask(task, i)"></fa-icon>
           </div>
         </td>
       </tr>
@@ -31,3 +31,12 @@
     Add Task
   </a>
 </form>
+
+<swal
+  #deleteSwal
+  title="Delete Task?"
+  text="This cannot be undone"
+  type="question"
+  [showCancelButton]="true"
+  [focusCancel]="true">
+</swal>

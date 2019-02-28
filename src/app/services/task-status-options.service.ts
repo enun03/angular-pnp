@@ -20,7 +20,7 @@ export class TaskStatusOptionsService {
   }
 
   getTaskSelectOptions() {
-    // get all the items from ToDo list
+    // get all the items from ddStatusOptions list
     return this.list.items
       .select('ID', 'Option', 'Status')
       .get();

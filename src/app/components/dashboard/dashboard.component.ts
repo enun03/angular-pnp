@@ -33,8 +33,7 @@ export class DashboardComponent implements OnInit {
     this.blockUI.start();
     // consume task service
     this.tasksService.getTasks()
-      .then((items: any[]) => {
-        console.log(items);
+      .then((items: Task[]) => {
         this.tasks = items;
         this.blockUI.stop();
       })
@@ -44,12 +43,11 @@ export class DashboardComponent implements OnInit {
       });
   }
 
-  deleteTask(task: Task, i: any, ev: any) {
+  deleteTask(task: Task, i: any) {
     this.blockUI.start();
     this.tasksService.deleteTask(task)
       .then(res => {
-        ev.path[5].remove(); // delete task from <tr> DOM
-        // delete this.tasks[i]; // delete task from tasks array
+        this.tasks.splice(i, 1); // delete task from tasks array
         console.log(`Task Id:${task.ID} was deleted..`, res);
         this.blockUI.stop();
       })
