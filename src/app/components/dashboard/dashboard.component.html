@@ -1,16 +1,33 @@
-<table class="table table-striped table-dark">
-  <thead>
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Task</th>
-      <th scope="col">Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let li of ListItems">
-      <td scope="row"><a href="/sites/sharestack/EM-site/Lists/ToDo/EditForm.aspx?ID={{li.ID}}">{{li.ID}}</a></td>
-      <td>{{li.Title}}</td>
-      <td>{{li.Status}}</td>
-    </tr>
-  </tbody>
-</table>
+<h3>Tasks List <span class="text-muted">(PnP CRUD Example)</span></h3>
+<form>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Task</th>
+        <th scope="col">Status</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of tasks; let i = index;">
+        <td scope="row">
+          <a id="toggleTaskModal" (click)="open(task);">
+            {{task.ID}}
+          </a>
+        </td>
+        <td>{{task.Title}}</td>
+        <td>{{task.Status}}</td>
+        <td>
+          <div style="text-align:center">
+            <fa-icon id="trashIcon" [icon]="faTrashAlt" (click)="deleteTask(task, i)"></fa-icon>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <a id="addTask" class="btn btn-success" routerLink="/add-task" role="button">
+    Add Task
+  </a>
+</form>

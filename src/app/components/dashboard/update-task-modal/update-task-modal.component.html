@@ -1,0 +1,26 @@
+<div class="modal-header">
+  <h4 class="modal-title">Task Details</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form>
+    <div class="form-group">
+      <label for="taskTitle">Task</label>
+      <input #taskTitle class="form-control" [(ngModel)]="task.Title" name="Title" type="text" value="{{task.Title}}" required>
+    </div>
+    <div class="form-group">
+      <label for="taskStatus">Status</label>
+      <select #taskStatus class="form-control" [(ngModel)]="task.Status" name="Status" required>
+        <option value="Pending">Pending</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Completed">Completed</option>
+      </select>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="updateTask(task)">Update</button>
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>

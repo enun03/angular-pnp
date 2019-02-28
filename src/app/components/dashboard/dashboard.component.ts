@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
-import { BlockUI, NgBlockUI } from 'ng-block-ui';
-
+import { Task } from '../../models/task';
 import { TasksService } from '../../services/tasks.service';
+
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+
+import { UpdateTaskModalComponent } from './update-task-modal/update-task-modal.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,26 +17,54 @@ import { TasksService } from '../../services/tasks.service';
 
 export class DashboardComponent implements OnInit {
   @BlockUI() blockUI: NgBlockUI;
-  ListItems: any[];
+  tasks: Task[];
+  faTrashAlt = faTrashAlt; // FontAwesome icon
 
-  constructor(private tasksService: TasksService) { }
+  constructor(
+    private tasksService: TasksService,
+    private modalService: NgbModal
+  ) { }
 
   ngOnInit() {
-    this.getListItems();
+    this.getTasks();
   }
 
-  getListItems(): void {
+  getTasks(): void {
     this.blockUI.start();
     // consume task service
-    this.tasksService.getListItems()
+    this.tasksService.getTasks()
       .then((items: any[]) => {
         console.log(items);
-        this.ListItems = items;
+        this.tasks = items;
         this.blockUI.stop();
       })
       .catch(err => {
         console.log(err);
         this.blockUI.stop();
       });
+  }
+
+  deleteTask(task: Task, i: any) {
+    this.blockUI.start();
+    this.tasksService.deleteTask(task)
+      .then(res => {
+        delete this.tasks[i]; // delete task from <tr> DOM
+        console.log(`Task Id:${task.ID} was deleted..`, res);
+        this.blockUI.stop();
+      })
+      .catch(err => {
+        console.log(err);
+        this.blockUI.stop();
+        throw err;
+      });
+  }
+
+  open(task: Task): void {
+    const modalRef = this.modalService.open(UpdateTaskModalComponent);
+    modalRef.componentInstance.task = task;
+  }
+
+  log(task: Task): void {
+    console.log(task);
   }
 }

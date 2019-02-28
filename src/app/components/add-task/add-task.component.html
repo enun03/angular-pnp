@@ -1,3 +1,31 @@
-<p>
-  add-task works!
-</p>
+<div class="row">
+  <div class="col-md-6">
+    <form>
+      <div class="form-group">
+        <label for="taskTitle">Task</label>
+        <input #taskTitle class="form-control" [(ngModel)]="task.Title" name="Title" type="text" placeholder="Task" required>
+      </div>
+      <div class="form-group">
+        <label for="taskStatus">Status</label>
+        <select #taskStatus class="form-control" [(ngModel)]="task.Status" name="Status" required>
+          <option selected>Pending</option>
+          <option>In Progress</option>
+          <option>Completed</option>
+        </select>
+      </div>
+      <button #btnSubmit
+        id="btnSubmit"
+        class="btn btn-primary"
+        (click)="addTask();" 
+        type="submit">
+        Submit
+      </button>
+      <button #btnCancel 
+        id="btnCancel"
+        class="btn btn-danger"
+        (click)="navigateTo('');">
+        Cancel
+      </button>
+    </form>
+  </div>
+</div>

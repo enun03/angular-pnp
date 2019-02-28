@@ -1,0 +1,28 @@
+#addTask {
+    position: absolute;
+    right: 3rem;
+    margin: 1rem;
+}
+
+#addTask:visited {
+    color: white;
+}
+
+#toggleTaskModal {
+    color:rgb(0, 114, 198);
+}
+
+#toggleTaskModal:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#trashIcon {
+    color: rgb(201, 47, 47);
+    opacity: 0.6;
+}
+
+#trashIcon:hover {
+    opacity: 1;
+    cursor: pointer;
+}
