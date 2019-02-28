@@ -44,11 +44,12 @@ export class DashboardComponent implements OnInit {
       });
   }
 
-  deleteTask(task: Task, i: any) {
+  deleteTask(task: Task, i: any, ev: any) {
     this.blockUI.start();
     this.tasksService.deleteTask(task)
       .then(res => {
-        delete this.tasks[i]; // delete task from <tr> DOM
+        ev.path[5].remove(); // delete task from <tr> DOM
+        // delete this.tasks[i]; // delete task from tasks array
         console.log(`Task Id:${task.ID} was deleted..`, res);
         this.blockUI.stop();
       })

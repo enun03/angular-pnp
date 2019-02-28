@@ -20,7 +20,7 @@
         <td>{{task.Status}}</td>
         <td>
           <div style="text-align:center">
-            <fa-icon id="trashIcon" [icon]="faTrashAlt" (click)="deleteTask(task, i)"></fa-icon>
+            <fa-icon id="trashIcon" [icon]="faTrashAlt" (click)="deleteTask(task, i, $event)"></fa-icon>
           </div>
         </td>
       </tr>

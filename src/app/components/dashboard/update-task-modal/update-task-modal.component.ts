@@ -16,6 +16,8 @@ export class UpdateTaskModalComponent implements OnInit {
   @BlockUI() blockUI: NgBlockUI;
   @Input() task: Task;
 
+  submitted = false; // Init form status
+
   constructor(
     private modalService: NgbModal,
     public activeModal: NgbActiveModal,
@@ -24,6 +26,8 @@ export class UpdateTaskModalComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  onSubmit() { this.submitted = true; }
 
   updateTask(task: Task) {
     this.blockUI.start();

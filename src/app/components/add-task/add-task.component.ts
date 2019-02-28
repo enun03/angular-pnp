@@ -13,6 +13,8 @@ import { TasksService } from '../../services/tasks.service';
 export class AddTaskComponent implements OnInit {
   task: Task = new Task();
 
+  submitted = false; // Init form status
+
   constructor(
     private router: Router,
     private tasksService: TasksService
@@ -20,6 +22,8 @@ export class AddTaskComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  onSubmit() { this.submitted = true; }
 
   addTask(): void {
     this.tasksService.addTask(this.task)

@@ -5,22 +5,34 @@
   </button>
 </div>
 <div class="modal-body">
-  <form>
+
+  <form #taskForm="ngForm" (ngSubmit)="onSubmit()">
+
     <div class="form-group">
       <label for="taskTitle">Task</label>
-      <input #taskTitle class="form-control" [(ngModel)]="task.Title" name="Title" type="text" value="{{task.Title}}" required>
+      <input class="form-control" name="title" [(ngModel)]="task.Title" #title="ngModel" type="text" value="{{task.Title}}" required>
+      <!-- Task Validation Alert -->
+      <div [hidden]="title.valid || title.pristine" class="alert alert-danger">
+        Task is required
+      </div>
     </div>
+
     <div class="form-group">
       <label for="taskStatus">Status</label>
-      <select #taskStatus class="form-control" [(ngModel)]="task.Status" name="Status" required>
+      <select class="form-control" [(ngModel)]="task.Status" #status="ngModel" name="status" required>
         <option value="Pending">Pending</option>
         <option value="In Progress">In Progress</option>
         <option value="Completed">Completed</option>
       </select>
+      <!-- Status Validation Alert -->
+      <div [hidden]="status.valid || status.pristine" class="alert alert-danger">
+        Status is required
+      </div>
     </div>
+
   </form>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-primary" (click)="updateTask(task)">Update</button>
+  <button type="submit" class="btn btn-primary" [disabled]="!taskForm.form.valid" (click)="updateTask(task)">Update</button>
   <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
 </div>
